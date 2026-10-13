@@ -1,11 +1,8 @@
 from logging.config import fileConfig
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
 from alembic import context
 
 # Импортируем наш файл Base и модели, чтобы Alembic мог генерировать миграции
-from core.database import Base
-from models import User, Household, HouseholdMember, Category, Transaction
+from app.core import Base
 
 config = context.config
 

@@ -1,8 +1,8 @@
 import uuid
-from sqlalchemy import Column, String, Integer, BigInteger, Date, ForeignKey, Boolean, DateTime, Enum as PgEnum
+from sqlalchemy import Column, String, BigInteger, Date, ForeignKey, DateTime
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
-from core.database import Base
+from app.core.database import Base
 
 class Transaction(Base):
     __tablename__ = "transactions"

@@ -8,3 +8,5 @@ venv/
 # Docker
 .DS_Store
 infra/pgdata/
+.idea
+.idea/**
