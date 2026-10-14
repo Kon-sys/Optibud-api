@@ -1,7 +1,7 @@
 import uuid
-from sqlalchemy import Column, String, BigInteger, ForeignKey, Boolean, Date, DateTime
+from sqlalchemy import Column, String, BigInteger, ForeignKey, Boolean, Date, DateTime, func
 from sqlalchemy.dialects.postgresql import UUID
-from app.core.database import Base
+from app.models.base import Base
 
 class Forecast(Base):
     __tablename__ = "forecasts"

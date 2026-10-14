@@ -1,7 +1,7 @@
 import uuid
-from sqlalchemy import Column, String, BigInteger, ForeignKey, Boolean
+from sqlalchemy import Column, String, BigInteger, ForeignKey, Boolean, Date
 from sqlalchemy.dialects.postgresql import UUID
-from app.core.database import Base
+from app.models.base import Base
 
 class GoalContribution(Base):
     __tablename__ = "goal_contributions"

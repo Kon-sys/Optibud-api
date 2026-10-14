@@ -1,7 +1,7 @@
 import uuid
 from sqlalchemy import Column, String, BigInteger, ForeignKey, Boolean
 from sqlalchemy.dialects.postgresql import UUID
-from app.core.database import Base
+from app.models.base import Base
 
 class BudgetCategoryLimit(Base):
     __tablename__ = "budget_category_limits"

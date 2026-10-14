@@ -2,7 +2,7 @@ import uuid
 from sqlalchemy import Column, String, BigInteger, Date, ForeignKey, DateTime
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
-from app.core.database import Base
+from app.models.base import Base
 
 class Transaction(Base):
     __tablename__ = "transactions"
