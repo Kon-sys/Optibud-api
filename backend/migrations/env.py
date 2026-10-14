@@ -2,7 +2,7 @@ from logging.config import fileConfig
 from alembic import context
 
 # Импортируем наш файл Base и модели, чтобы Alembic мог генерировать миграции
-from app.core import Base
+from app.models.base import Base
 
 config = context.config
 
