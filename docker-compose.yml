@@ -5,11 +5,11 @@ services:
     image: postgres:15-alpine
     container_name: optibud_postgres
     environment:
-      POSTGRES_USER: optibud_user
-      POSTGRES_PASSWORD: optibud_password
-      POSTGRES_DB: optibud_db
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "5433:5432"
+      - "${POSTGRES_PORT}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
