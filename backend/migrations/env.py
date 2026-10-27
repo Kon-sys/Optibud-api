@@ -1,3 +1,4 @@
+import os
 from logging.config import fileConfig
 from alembic import context
 from dotenv import load_dotenv
@@ -13,7 +14,7 @@ load_dotenv()
 db_user = os.getenv("POSTGRES_USER", "optibud_user")
 db_password = os.getenv("POSTGRES_PASSWORD", "optibud_password")
 db_host = os.getenv("POSTGRES_HOST", "localhost")
-db_port = os.getenv("POSTGRES_PORT", "5433")
+db_port = os.getenv("POSTGRES_PORT", "5432")
 db_name = os.getenv("POSTGRES_DB", "optibud_db")
 
 # Динамически переопределяем sqlalchemy.url в конфиге Alembic

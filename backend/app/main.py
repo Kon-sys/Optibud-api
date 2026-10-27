@@ -1,13 +1,17 @@
+import logging
+import os
+
+from app.api import errors
+from app.api.router import api_v1
+from app.api.routers import health
 from fastapi import FastAPI
 
-app = FastAPI()
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+logging.basicConfig(level=logging.INFO)
 
+app = FastAPI(title="OptiBud API", version="1.0.0")
+errors.install(app)
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+app.include_router(health.router)
+app.include_router(api_v1)
