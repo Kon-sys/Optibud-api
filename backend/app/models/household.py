@@ -16,6 +16,7 @@ class Household(Base):
     currency = Column(String(3), nullable=False, default="BYN")
     timezone = Column(String(50), nullable=False, default="Europe/Minsk")
     status = Column(String(20), nullable=False, default="active")
+    version = Column(BigInteger, nullable=False, default=1)  # ETag записи семьи (PATCH /households/{h})
     data_version = Column(BigInteger, nullable=False, default=1)
     change_seq = Column(BigInteger, nullable=False, default=0)
     membership_version = Column(BigInteger, nullable=False, default=1)

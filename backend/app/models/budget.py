@@ -1,6 +1,7 @@
 import uuid
-from sqlalchemy import Column, String, BigInteger, ForeignKey, Boolean, Date
+from sqlalchemy import Column, String, BigInteger, ForeignKey, Date
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
 from app.models.base import Base
 
 class Budget(Base):
@@ -13,3 +14,7 @@ class Budget(Base):
     planned_income_minor = Column(BigInteger, nullable=True)
     currency = Column(String(3), nullable=False, default="BYN")
     version = Column(BigInteger, nullable=False, default=1)
+
+    limits = relationship(
+        "BudgetCategoryLimit", backref="budget", cascade="all, delete-orphan", lazy="selectin"
+    )

@@ -1,9 +1,9 @@
 import uuid
-from sqlalchemy import Column, String, BigInteger, ForeignKey, Boolean, Date
+from sqlalchemy import Column, String, BigInteger, ForeignKey, Date
 from sqlalchemy.dialects.postgresql import UUID
-from app.models.base import Base
+from app.models.base import Base, TimestampMixin
 
-class FinancialGoal(Base):
+class FinancialGoal(TimestampMixin, Base):
     __tablename__ = "financial_goals"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)

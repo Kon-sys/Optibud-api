@@ -1,5 +1,5 @@
 import uuid
-from sqlalchemy import Column, String, BigInteger, ForeignKey, Boolean, Date, DateTime, func
+from sqlalchemy import Column, String, BigInteger, Float, ForeignKey, Date, DateTime, func
 from sqlalchemy.dialects.postgresql import UUID
 from app.models.base import Base
 
@@ -9,9 +9,13 @@ class Forecast(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     household_id = Column(UUID(as_uuid=True), ForeignKey("households.id"), nullable=False)
     target_month = Column(Date, nullable=False)
+    status = Column(String(20), nullable=False, default="current")  # current, stale, experimental
     predicted_minor = Column(BigInteger, nullable=False)
     lower_minor = Column(BigInteger, nullable=True)
     upper_minor = Column(BigInteger, nullable=True)
+    interval_level = Column(Float, nullable=True)
+    history_start = Column(Date, nullable=True)
+    history_end = Column(Date, nullable=True)
     model_version = Column(String(50), nullable=False)
     data_version = Column(BigInteger, nullable=False)
     generated_at = Column(DateTime(timezone=True), server_default=func.now())

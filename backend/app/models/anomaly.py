@@ -1,5 +1,5 @@
 import uuid
-from sqlalchemy import Column, String, BigInteger, ForeignKey, Boolean, Date, DateTime, func
+from sqlalchemy import Column, String, BigInteger, ForeignKey, Date, DateTime, func
 from sqlalchemy.dialects.postgresql import UUID
 from app.models.base import Base
 
@@ -9,6 +9,10 @@ class Anomaly(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     household_id = Column(UUID(as_uuid=True), ForeignKey("households.id"), nullable=False)
     transaction_id = Column(UUID(as_uuid=True), ForeignKey("transactions.id"), nullable=True)
+    category_id = Column(UUID(as_uuid=True), ForeignKey("categories.id"), nullable=True)
+    period_start = Column(Date, nullable=True)
+    period_end = Column(Date, nullable=True)
+    dedup_key = Column(String(200), unique=True, nullable=False)
     rule_code = Column(String(100), nullable=False)
     explanation = Column(String, nullable=False)
     actual_minor = Column(BigInteger, nullable=False)

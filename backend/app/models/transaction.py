@@ -1,6 +1,7 @@
 import uuid
-from sqlalchemy import Column, String, BigInteger, Date, ForeignKey, DateTime
+from sqlalchemy import Column, String, BigInteger, Numeric, Date, ForeignKey, DateTime
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.models.base import Base
 
@@ -19,8 +20,18 @@ class Transaction(Base):
     description = Column(String(500), nullable=True)
     source = Column(String(50), nullable=False, default="manual")
     external_id = Column(String(255), nullable=True)
+    import_batch_id = Column(UUID(as_uuid=True), nullable=True)
+    categorization_method = Column(String(20), nullable=False, default="none")
+    category_confidence = Column(Numeric(5, 4), nullable=True)
+    category_model_version = Column(String(50), nullable=True)
     original_transaction_id = Column(UUID(as_uuid=True), ForeignKey("transactions.id"), nullable=True)
     version = Column(BigInteger, nullable=False, default=1)
     deleted_at = Column(DateTime(timezone=True), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+
+    author = relationship("User", foreign_keys=[author_user_id], lazy="selectin")
+
+    @property
+    def author_display_name(self) -> str:
+        return self.author.display_name if self.author is not None else "Удалённый участник"
